@@ -1,0 +1,36 @@
+<div id="Loginbox">
+	<div id="LoginTop"
+		 style="background-image:url({{ template_path }}/images/general/box-top.gif)"></div>
+	<div id="BorderLeft" class="LoginBorder"
+		 style="background-image:url({{ template_path }}/images/general/chain.gif)"></div>
+	{% apply spaceless %}
+	<div id="LoginButtonContainer"
+		 style="background-image:url({{ template_path }}/images/loginbox/loginbox-textfield-background.gif)">
+		<div id="LoginButton" style="background-image:url({{ template_path }}/images/global/buttons/mediumbutton.gif)"><div onClick="LoginButtonAction();" onMouseOver="MouseOverBigButton(this);" onMouseOut="MouseOutBigButton(this);"><div class="Button" style="background-image:url({{ template_path }}/images/global/buttons/mediumbutton-over.gif)"></div>
+				<div id="ButtonText" {% if not logged %}style='background-image:url("{{ template_path }}/images/global/buttons/mediumbutton_login.png"{% endif %}'>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endapply %}
+
+	<div style="clear:both"></div>
+
+	{% apply spaceless %}
+	<div class="Loginstatus"
+		 style="background-image:url({{ template_path }}/images/loginbox/loginbox-textfield-background.gif)">
+		<div id="LoginstatusText_2" onClick="LoginstatusTextAction(this);"
+			 onMouseOver="MouseOverLoginBoxText(this);" onMouseOut="MouseOutLoginBoxText(this);">
+			<div id="LoginstatusText_2_1" class="LoginstatusText"
+				 style="background-image:url({{ template_path }}/images/loginbox/loginbox-font-create-account.gif)"></div>
+			<div id="LoginstatusText_2_2" class="LoginstatusText"
+				 style="background-image:url({{ template_path }}/images/loginbox/loginbox-font-create-account-over.gif)"></div>
+		</div>
+	</div>
+	{% endapply %}
+
+	<div id="BorderRight" class="LoginBorder"
+	 style="background-image:url({{ template_path }}/images/general/chain.gif)"></div>
+	<div id="LoginBottom" class="Loginstatus"
+	 style="background-image:url({{ template_path }}/images/general/box-bottom.gif)"></div>
+</div>

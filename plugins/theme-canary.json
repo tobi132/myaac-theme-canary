@@ -1,0 +1,30 @@
+{
+	"name": "Theme Canary",
+	"description": "Tibia.com template for MyAAC.",
+	"version": "1.0-alpha.2",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "opentibiabr, tobi132",
+	"contact": "tobi132@gmx.net",
+	"require": {
+		"myaac": "1.0"
+	},
+	"hooks": {
+		"canary-start": {
+			"type": "STARTUP",
+			"file": "plugins/theme-canary/init.php"
+		}
+	},
+	"routes": {
+		"characters-page": {
+			"pattern": "characters[/{name:string}]",
+			"file": "plugins/theme-canary/themes/canary/pages/characters.php",
+			"method": "get,post"
+		}
+	},
+	"install": "plugins/theme-canary/install.php",
+	"uninstall": [
+		"plugins/theme-canary.json",
+		"plugins/theme-canary"
+	]
+}
