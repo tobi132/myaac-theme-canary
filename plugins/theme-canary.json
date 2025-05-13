@@ -1,13 +1,13 @@
 {
 	"name": "Theme Canary",
 	"description": "Tibia.com template for MyAAC.",
-	"version": "1.0-alpha.2",
+	"version": "1.0-beta",
 	"type": "template",
 	"license": "GPLv3",
 	"author": "opentibiabr, tobi132",
 	"contact": "tobi132@gmx.net",
 	"require": {
-		"myaac": "1.0"
+		"myaac": "1.4"
 	},
 	"hooks": {
 		"canary-start": {

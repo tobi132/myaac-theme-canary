@@ -1,3 +1,6 @@
+[1.0-beta - 13.05.2025]
+	* fix lost account link in account.login.html.twig
+
 [1.0-alpha.2 - 19.04.2025]
 	* move highscores to twig
 	* fix characters page (health bar, achievements, etc.)
