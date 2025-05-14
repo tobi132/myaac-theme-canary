@@ -171,20 +171,22 @@ function showCalendar($month = null): string
 
           global $config;
           $events_xml = $config['data_path'] . 'XML/events.xml';
-          $xml = simplexml_load_file($events_xml);
+		  if (file_exists($events_xml)) {
+			  $xml = simplexml_load_file($events_xml);
 
-          $currentDay = str_pad($currentDay, 2, '0', STR_PAD_LEFT);
+			  $currentDay = str_pad($currentDay, 2, '0', STR_PAD_LEFT);
 
-          $verif_date = "$month/$currentDay/" . date('Y');
+			  $verif_date = "$month/$currentDay/" . date('Y');
 
-          foreach ($xml->event as $event) {
-            $start_date = strtotime($event['startdate']);
-            $end_date = strtotime($event['enddate']);
-            $current_date = strtotime($verif_date);
+			  foreach ($xml->event as $event) {
+				  $start_date = strtotime($event['startdate']);
+				  $end_date = strtotime($event['enddate']);
+				  $current_date = strtotime($verif_date);
 
-            if ($current_date >= $start_date && $current_date <= $end_date) {
-              $outDays .= generateIndicator($event);
-            }
+				  if ($current_date >= $start_date && $current_date <= $end_date) {
+					  $outDays .= generateIndicator($event);
+				  }
+			  }
           }
         }
       } else {
