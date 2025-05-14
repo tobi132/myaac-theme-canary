@@ -1,3 +1,10 @@
+[1.0-beta.2 - 14.05.2025]
+	* fix event-schedule warnings
+	* Use accounts.premium_points, if coins not present
+	* Use template_path where possible
+	* Fix headline format - png
+	* Remove useless quotation marks in highscores
+
 [1.0-beta - 13.05.2025]
 	* fix lost account link in account.login.html.twig
 
