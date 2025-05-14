@@ -13,13 +13,10 @@
 		"canary-start": {
 			"type": "STARTUP",
 			"file": "plugins/theme-canary/init.php"
-		}
-	},
-	"routes": {
-		"characters-page": {
-			"pattern": "characters[/{name:string}]",
-			"file": "plugins/theme-canary/themes/canary/pages/characters.php",
-			"method": "get,post"
+		},
+		"canary-routes": {
+			"type": "FILTER_ROUTES",
+			"file": "plugins/theme-canary/hooks/routes.php"
 		}
 	},
 	"install": "plugins/theme-canary/install.php",
