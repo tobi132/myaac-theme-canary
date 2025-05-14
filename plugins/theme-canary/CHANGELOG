@@ -4,6 +4,7 @@
 	* Use template_path where possible
 	* Fix headline format - png
 	* Remove useless quotation marks in highscores
+	* use hook FILTER_ROUTES for characters route
 
 [1.0-beta - 13.05.2025]
 	* fix lost account link in account.login.html.twig
