@@ -7,7 +7,7 @@
 	"author": "opentibiabr, tobi132",
 	"contact": "tobi132@gmx.net",
 	"require": {
-		"myaac": "1.4"
+		"myaac": "1.5"
 	},
 	"hooks": {
 		"canary-start": {
