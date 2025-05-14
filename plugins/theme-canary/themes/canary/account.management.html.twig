@@ -512,10 +512,10 @@
 							<td class="LabelV">Account Status:</td>
 							<td>{{ account_status|raw }}</td>
 						</tr>
+						{% if db.hasColumn('accounts', 'coins') %}
 						<tr style="background-color: {{ config.darkborder }};">
 							<td class="LabelV">Tibia Coins:</td>
-							<td>{{ account_logged.getCustomField('coins') }} <img src="{{ template_path }}/images/account/icon-tibiacoin.png"
-																				  class="VSCCoinImages"/>
+							<td>{{ account_logged.getCustomField('coins') }} <img src="{{ template_path }}/images/account/icon-tibiacoin.png" class="VSCCoinImages"/>
 								(Including: {{ account_logged.getCustomField('coins_transferable') }} <img
 									src="{{ template_path }}/images/account/icon-tibiacointrusted.png"
 									class="VSCCoinImages">)
@@ -527,6 +527,12 @@
 									src="{{ template_path }}/images/account/icon-tournamentcoin.png" class="VSCCoinImages">
 							</td>
 						</tr>
+						{% else %}
+						<tr style="background-color: {{ config.lightborder }};">
+							<td class="LabelV">Premium Points:</td>
+							<td>{{ account_logged.getCustomField('premium_points') }}</td>
+						</tr>
+						{% endif %}
 						<tr style="background-color: {{ config.darkborder }};">
 							<td class="LabelV">Registered:</td>
 							<td>{{ account_registered|raw }}</td>
