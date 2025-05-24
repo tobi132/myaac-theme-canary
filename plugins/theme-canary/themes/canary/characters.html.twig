@@ -125,7 +125,7 @@
                             {% set rows = rows + 1 %}
                             <tr bgcolor="{{ getStyle(rows) }}">
                               <td class="LabelV175">House:</td>
-                              <td><a href="">{{ house.name ~ house.town ~ house.add }}</a></td>
+                              <td><a href="{{ getLink('houses') }}?name={{ house.name|urlencode }}">{{ house.name ~ house.town ~ house.add }}</a></td>
                             </tr>
                           {% endif %}
 
