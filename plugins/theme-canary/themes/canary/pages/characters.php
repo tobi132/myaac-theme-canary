@@ -412,7 +412,7 @@ WHERE killers.death_id = '" . $death['id'] . "' ORDER BY killers.final_hit DESC,
 
 	// signature
 	if ($config['signature_enabled']) {
-		$signature_url = BASE_URL . ($config['friendly_urls'] ? '' : '?') . urlencode($player->getName()) . '.png';
+		$signature_url = getLink(urlencode($player->getName()) . '.png');
 	}
 
 	if (!$hidden) {
