@@ -1,4 +1,6 @@
 <?php
+defined('MYAAC') or die('Direct access not allowed!');
+
 global $template_name;
 
 if ($template_name === 'canary') {
