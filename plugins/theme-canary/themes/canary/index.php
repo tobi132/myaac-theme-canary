@@ -18,9 +18,6 @@ if (isset($config['boxes']))
 
 	<link href="<?= $template_path; ?>/css/facebook.css" rel="stylesheet" type="text/css">
 
-	<link rel="stylesheet" href="<?= $template_path; ?>/fonts/fontawesome/all.css">
-	<script src="<?= $template_path; ?>/fonts/fontawesome/all.js"></script>
-
 	<script src="<?= $template_path; ?>/bootstrap/popper.min.js"></script>
 	<script src="<?= $template_path; ?>/bootstrap/js/bootstrap.min.js"></script>
 	<link href="<?= $template_path; ?>/bootstrap/bootstrap-myaac.css" rel="stylesheet" type="text/css">
