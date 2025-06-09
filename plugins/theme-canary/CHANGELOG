@@ -1,3 +1,6 @@
+[1.0.2 - 03.06.2025]
+	* Adjust characters route to allow squared brackets []
+
 [1.0.1 - 24.05.2025]
 	* Rename server-info to ots-info
 	* Fix menu links
