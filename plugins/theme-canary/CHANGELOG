@@ -1,3 +1,6 @@
+[1.0.3 - 09.06.2025]
+	* Add csrf token in account.login.html.twig
+
 [1.0.2 - 03.06.2025]
 	* Adjust characters route to allow squared brackets []
 
