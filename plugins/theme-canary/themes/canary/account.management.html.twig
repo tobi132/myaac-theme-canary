@@ -79,6 +79,7 @@
 												<div style="font-size:1px;height:4px;"></div>
 
 												<form action="{{ getLink('account/logout') }}" method="post" style="padding:0px;margin:0px;">
+													{{ csrf() }}
 													{{ include('buttons.logout.html.twig') }}
 												</form>
 											</td>
@@ -215,6 +216,7 @@
 						<td class="LabelV">Your account is not registered!</td>
 						<td>
 							<form action="{{ getLink('account/register') }}" method="post" style="border:0;">
+								{{ csrf() }}
 								{{ include('buttons.register_account.html.twig') }}
 							</form>
 						</td>
@@ -391,20 +393,24 @@
 						<td>
 							<div style="display: inline-flex; justify-content: center; margin: 2px 0 0 7px;">
 								<form action="{{ getLink('account/characters/create') }}" method="post">
+									{{ csrf() }}
 									{{ include('buttons.create_character.html.twig') }}
 								</form>
 								{% if config.account_change_character_main and players | length >= 1 %}
 									<form action="{{ getLink('account/characters/change-main') }}" method="post" style="margin-left: 6px">
+										{{ csrf() }}
 										{{ include('buttons.change_main.html.twig') }}
 									</form>
 								{% endif %}
 								{% if config.account_change_character_name %}
 									<form action="{{ getLink('account/characters/change-name') }}" method="post" style="margin-left: 6px">
+										{{ csrf() }}
 										{{ include('buttons.change_name.html.twig') }}
 									</form>
 								{% endif %}
 								{% if config.account_change_character_sex %}
 									<form action="{{ getLink('account/characters/change-sex') }}" method="post" style="margin-left: 6px">
+										{{ csrf() }}
 										{{ include('buttons.change_sex.html.twig') }}
 									</form>
 								{% endif %}
@@ -452,6 +458,7 @@
 						<tr>
 							<td style="border:0;">
 								<form action="{{ getLink('account/change-email') }}" method="post">
+									{{ csrf() }}
 									{{ include('buttons.edit.html.twig') }}
 								</form>
 							</td>
@@ -551,6 +558,7 @@
 								<tr>
 									<td style="border:0;">
 										<form action="{{ getLink('account/change-password') }}" method="post">
+											{{ csrf() }}
 											{{ include('buttons.change_password.html.twig') }}
 										</form>
 									</td>
@@ -562,6 +570,7 @@
 								<tr>
 									<td style="border:0;">
 										<form action="{{ getLink('account/change-email') }}" method="post">
+											{{ csrf() }}
 											<input type="hidden" name="newemail" value=""/>
 											<input type="hidden" name="newemaildate" value="0">
 											{{ include('buttons.change_email.html.twig') }}
@@ -577,8 +586,9 @@
 							<td>
 								<table border="0" cellspacing="0" cellpadding="0">
 									<tr>
-										<td style="border:0px;">
+										<td style="border:0;">
 											<form action="{{ getLink('account/register') }}" method="post">
+												{{ csrf() }}
 												{{ include('buttons.register_account.html.twig') }}
 											</form>
 										</td>
@@ -659,9 +669,9 @@
 														<table border="0" cellspacing="0" cellpadding="0">
 															<tr>
 																<td style="border:0px;">
-																  <form action="{{ getLink('account/change-info') }}"
-																		method="post">
-																	  {{ include('buttons.edit.html.twig') }}
+																  <form action="{{ getLink('account/change-info') }}" method="post">
+																		{{ csrf() }}
+																		{{ include('buttons.edit.html.twig') }}
 																  </form>
 																</td>
 															</tr>
