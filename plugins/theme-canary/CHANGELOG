@@ -1,3 +1,10 @@
+[1.1 - 02.08.2025]
+	* revamp of highscores according to real tibia style
+	* pagination
+	* last updated
+	* online/offline status configurable
+	* latest myaac required (v1.8)
+
 [1.0.3 - 09.06.2025]
 	* Add missing csrf token in account.login.html.twig and account.management.html.twig
 

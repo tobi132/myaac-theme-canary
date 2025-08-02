@@ -304,6 +304,16 @@ img {
     background-repeat: no-repeat;
 }
 
+.CaptionContainer .RightArea {
+	float: right;
+	font-weight: 400;
+	margin-right: 5px;
+}
+
+.DoNotBreak {
+	white-space: nowrap;
+}
+
 #LeftArtwork #LogoLink {
   position: absolute;
   bottom: 14px;

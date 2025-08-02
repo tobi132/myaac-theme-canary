@@ -1,13 +1,13 @@
 {
 	"name": "Theme Canary",
 	"description": "Template based on @opentibiabr MyAAC, similiar to original Tibia website.",
-	"version": "1.0.3",
+	"version": "1.1",
 	"type": "template",
 	"license": "GPLv3",
 	"author": "opentibiabr, tobi132",
 	"contact": "tobi132@gmx.net",
 	"require": {
-		"myaac": "1.5"
+		"myaac": "1.8"
 	},
 	"hooks": {
 		"canary-start": {

@@ -1,7 +1,36 @@
+{% set pageNavigation %}
+
+	{% set pagesLimit = min((totalResults/setting('core.highscores_per_page'))|round(0, 'ceil'), 20) %}
+
+	{% set totalResults = min(pagesLimit * setting('core.highscores_per_page'), totalResults) %}
+
+<tr>
+	<td class="PageNavigation">
+		<small>
+			<div style="float: left;">
+				<b>» Pages:
+					{% for i in 1..pagesLimit %}
+					<span class="PageLink ">
+						{% if page == i %}
+							<span class="CurrentPageLink">{{ i }}</span>
+						{% else %}
+							<a href="{{ baseLink ~ i }}">{{ i }}</a>
+						{% endif %}
+					</span>
+					{% endfor %}
+				</b>
+			</div>
+			<div style="float: right;"><b>» Results: {{ totalResults }}</b></div>
+		</small>
+	</td>
+</tr>
+{% endset %}
+
 <div class="TableContainer">
 	<div class="CaptionContainer">
-		<div class="CaptionInnerContainer"><span class="CaptionEdgeLeftTop"
-												 style="background-image:url(https://static.tibia.com/images/global/content/box-frame-edge.gif);"></span>
+		<div class="CaptionInnerContainer">
+			<span class="CaptionEdgeLeftTop"
+				  style="background-image:url(https://static.tibia.com/images/global/content/box-frame-edge.gif);"></span>
 			<span class="CaptionEdgeRightTop"
 				  style="background-image:url(https://static.tibia.com/images/global/content/box-frame-edge.gif);"></span>
 			<span class="CaptionBorderTop"
@@ -32,7 +61,7 @@
 							</td>
 							<td>
 								<select onchange="location = this.value;" id="vocationFilter">
-									<option value="{{ getLink('highscores') }}/{{ list|urlencode }}" class="size_xs">[ALL]</option>
+									<option value="{{ getLink('highscores') }}/{{ list|urlencode }}" class="size_xs">(all))</option>
 									{% for i in 0..config.vocations_amount %}
 										<option value="{{ getLink('highscores') }}/{{ list|urlencode }}/{{ config.vocations[i]|lower|urlencode }}" class="size_xs" {% if vocationId is not null and vocationId == i %}selected{% endif %}>{{ config.vocations[i]}}</option>
 									{% endfor %}
@@ -47,7 +76,7 @@
 							</td>
 							<td>
 								<select onchange="location = this.value;" id="skillFilter">
-									{% for link, name in types %}
+									{% for link, name in types|sort((a, b) => a <=> b) %} %}
 										<option value="{{ getLink('highscores') }}/{{ link|urlencode }}{% if vocation is not null %}/{{ vocation|lower|urlencode }}{% endif %}" class="size_xs" {% if list is not null and list == link %}selected{% endif %}>{{ name }}</option>
 									{% endfor %}
 								</select>
@@ -75,7 +104,7 @@
 				  style="background-image:url(https://static.tibia.com/images/global/content/table-headline-border.gif);"></span>
 			<span class="CaptionVerticalLeft"
 				  style="background-image:url(https://static.tibia.com/images/global/content/box-frame-vertical.gif);"></span>
-			<div class="Text">Highscores</div>
+			<div class="Text">Highscores <span class="RightArea">Last Update:  {{ (date().timestamp - updatedAt == 0) ? 'now' : updatedAt|timeago }} </span></div>
 			<span class="CaptionVerticalRight"
 				  style="background-image:url(https://static.tibia.com/images/global/content/box-frame-vertical.gif);"></span>
 			<span class="CaptionBorderBottom"
@@ -93,25 +122,26 @@
 				<div class="InnerTableContainer">
 					<table style="width:100%;">
 						<tbody>
+						{{ pageNavigation }}
 						<tr>
 							<td>
 								<div class="TableContentContainer">
-									<table class="TableContent" width="100%" style="border:1px solid #faf0d7;">
+									<table class="TableContent myaac-table" width="100%" style="border:1px solid #faf0d7;">
 										<tbody>
 										<tr class="LabelH">
-											<td style="width: 10%">Rank</td>
+											<td>Rank</td>
 
 											{% if setting('core.highscores_outfit') %}
-												<td style="width: 10%">Outfit</td>
+												<td>Outfit</td>
 											{% endif %}
 
-											<td style="width: 30%">Name</td>
-											<td style="width: 20%; text-align:right">Vocation</td>
-											<td style="width: 10%; text-align: right">
+											<td style="width: 90%">Name</td>
+											<td style="text-align:right">Vocation</td>
+											<td style="text-align: right">
 												{{ levelName }}
 											</td>
 											{% if skill == constant('POT::SKILL__LEVEL') %}
-											<td style="width: 20%; text-align: right">Points</td>
+											<td style="text-align: right">Points</td>
 											{% endif %}
 										</tr>
 
@@ -124,20 +154,21 @@
 											{% for player in highscores %}
 												{% set row = row + 1 %}
 
-												<tr style="height: 64px;"><td>{{ player.rank }}.</td>
+												<tr {% if setting('core.highscores_outfit') %}style="height: 50px;"{% endif %}>
+													<td>{{ player.rank }}</td>
 
 												{% if setting('core.highscores_outfit') %}
 													<td>{{ player.outfit|raw }}</td>
 												{% endif %}
 
-												<td>
+												<td class="DoNotBreak">
 													<a href="{{ player.link }}">
-														<span style="color: {% if player.online > 0 %}green{% else %}red{% endif %}">{{ player.name }}</span>
+														<span {% if setting('core.highscores_online_status') %}style="color: {% if player.online > 0 %}green{% else %}red{% endif %}"{% endif %}>{{ player.name }}</span>
 													</a>
 												</td>
 
 												{% if setting('core.highscores_vocation') %}
-													<td style="text-align:right;">{{ player.vocation }}</td>
+													<td class="DoNotBreak" style="text-align:right;">{{ player.vocation }}</td>
 												{% endif %}
 
 												<td>
@@ -150,28 +181,13 @@
 											</tr>
 										{% endfor %}
 
-											{% if linkPreviousPage|length > 0 %}
-											<tr>
-												<td colspan="2" width="100%" align="right" valign="bottom">
-													<a href="{{ linkPreviousPage }}" class="size_xxs">Previous Page</a>
-												</td>
-											</tr>
-											{% endif %}
-
-											{% if linkNextPage|length > 0 %}
-											<tr>
-												<td colspan="2" width="100%" align="right" valign="bottom">
-													<a href="{{ linkNextPage }}" class="size_xxs">Next Page</a>
-												</td>
-											</tr>
-											{% endif %}
-
 										{% endif %}
 										</tbody>
 									</table>
 								</div>
 							</td>
 						</tr>
+						{{ pageNavigation }}
 						</tbody>
 					</table>
 				</div>
