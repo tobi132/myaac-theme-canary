@@ -32,7 +32,6 @@ return [
 		'Monsters' => 'monsters',
 		'Spells' => 'spells',
 		'Commands' => 'commands',
-		'Exp Stages' => 'exp-stages',
 		'Gallery' => 'gallery',
 		'Server Info' => 'ots-info',
 		'Exp Table' => 'exp-table',
