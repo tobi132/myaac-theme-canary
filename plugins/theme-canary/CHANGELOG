@@ -1,3 +1,6 @@
+[1.1.1 - 17.08.2025]
+	* Fix showing closing element + console error
+
 [1.1 - 02.08.2025]
 	* revamp of highscores according to real tibia style
 	* pagination

@@ -159,6 +159,10 @@ if (isset($config['boxes']))
 		function InitializeMenu()
 		{
 			for (menuItemName in menu[0]) {
+				if (!document.getElementById(menuItemName + "_Submenu")) {
+					continue;
+				}
+
 				if (menu[0][menuItemName] == "0") {
 					document.getElementById(menuItemName + "_Submenu").style.visibility = "hidden";
 					document.getElementById(menuItemName + "_Submenu").style.display = "none";
@@ -350,10 +354,12 @@ foreach($config['menu_categories'] as $id => $cat) {
 $i = 0;
 foreach ($config['menu_categories'] as $id => $cat) {
 	if(!isset($menus[$id]) || ($id == MENU_CATEGORY_SHOP && !setting('core.gifts_system'))) {
-							continue;
-						}
-						?>
-						<div id='<?= $cat['id']; ?>' class='menuitem'>
+		continue;
+	}
+
+	$i++;
+	?>
+	<div id='<?= $cat['id']; ?>' class='menuitem'>
 	<span onClick="MenuItemAction('<?= $cat['id']; ?>')">
 		<div class='MenuButton' style='background-image:url(<?= $template_path ?>/images/menu/button-background.gif);'>
 			<div onMouseOver='MouseOverMenuItem(this);' onMouseOut='MouseOutMenuItem(this);'>
@@ -399,7 +405,7 @@ class='Submenuitem' onMouseOver='MouseOverSubmenuItem(this)'
 								?>
 							</div>
 							<?php
-							if($id == MENU_CATEGORY_SHOP || (!setting('core.gifts_system') && $i == $countElements)) {
+							if ($i == $countElements) {
 								?>
 								<div id='MenuBottom'
 									 style='background-image:url(<?= $template_path; ?>/images/general/box-bottom.gif);'></div>
