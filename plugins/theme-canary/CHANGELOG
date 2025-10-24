@@ -1,3 +1,11 @@
+[1.2 - 25.10.2025]
+	* event-schedule overhaul
+		* display all months - previous/next switch
+		* change first day to Monday (instead of Sunday)
+		* display star on start/end event
+		* sorting by "displaypriority"
+		* optimize events.xml loading
+
 [1.1.2 - 09.09.2025]
 	* adjustments for latest myaac - characters.php auto route
 
