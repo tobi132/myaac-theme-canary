@@ -7,6 +7,7 @@
 <tr>
 	<td class="PageNavigation">
 		<small>
+			{% if pagesLimit > 0 %}
 			<div style="float: left;">
 				<b>» Pages:
 					{% for i in 1..pagesLimit %}
@@ -20,6 +21,7 @@
 					{% endfor %}
 				</b>
 			</div>
+			{% endif %}
 			<div style="float: right;"><b>» Results: {{ totalResults }}</b></div>
 		</small>
 	</td>

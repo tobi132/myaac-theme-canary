@@ -1,3 +1,6 @@
+[1.2.1 - 31.11.2025]
+	* fix if there are no records - don't show pages
+
 [1.2 - 25.10.2025]
 	* event-schedule overhaul
 		* display all months - previous/next switch
