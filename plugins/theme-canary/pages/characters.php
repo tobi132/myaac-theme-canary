@@ -82,6 +82,8 @@
 defined('MYAAC') or die('Direct access not allowed!');
 $title = 'Characters';
 
+$config['achievements_base'] = 300000;
+
 $groups = new OTS_Groups_List();
 function generate_search_form($autofocus = false)
 {
