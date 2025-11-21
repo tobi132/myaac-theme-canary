@@ -1,5 +1,6 @@
 [1.2.1 - 31.11.2025]
 	* fix if there are no records - don't show pages
+	* Move config.achievements_base, to fix error on characters page
 
 [1.2 - 25.10.2025]
 	* event-schedule overhaul
