@@ -255,7 +255,7 @@ if ($player->isLoaded() && !$player->isDeleted()) {
 		}
 	}
 
-	$quests_enabled = $config['characters']['quests'] && !empty($config['quests']);
+	$quests_enabled = $config['characters']['quests'] && !empty($config['quests']) && $db->hasTable('player_storage');
 	if ($quests_enabled) {
 		$quests = $config['quests'];
 		$sql_query_in = '';
@@ -464,22 +464,26 @@ WHERE killers.death_id = '" . $death['id'] . "' ORDER BY killers.final_hit DESC,
 
 	$achievementPoints = 0;
 	$listAchievement = [];
-	$achievements= require PLUGINS . 'theme-canary/achievements.php';
-	foreach ($achievements as $achievement => $value) {
-		$achievementStorage = $config['achievements_base'] + $achievement;
-		$achievementsPlayer = $db->query("SELECT `key`, `value` FROM `player_storage` WHERE `key` = {$achievementStorage} AND `player_id` = {$player->getId()}")->fetch();
-		if ($achievementsPlayer && $achievementsPlayer['key'] == $achievementStorage) {
-			$achievementPoints = $achievementPoints + $value['points'];
-			$insertAchievement = [
-				'BASE_URL' => BASE_URL,
-				'PATH_URL' => $template_path,
-				'name'     => $value['name'],
-				'grade'    => $value['grade'],
-				'secret'   => $value['secret'] ?? false,
-			];
+
+	if ($db->hasTable('player_storage')) {
+		$achievements = require PLUGINS . 'theme-canary/achievements.php';
+		foreach ($achievements as $achievement => $value) {
+			$achievementStorage = $config['achievements_base'] + $achievement;
+			$achievementsPlayer = $db->query("SELECT `key`, `value` FROM `player_storage` WHERE `key` = {$achievementStorage} AND `player_id` = {$player->getId()}")->fetch();
+			if ($achievementsPlayer && $achievementsPlayer['key'] == $achievementStorage) {
+				$achievementPoints = $achievementPoints + $value['points'];
+				$insertAchievement[] = [
+					'BASE_URL' => BASE_URL,
+					'PATH_URL' => $template_path,
+					'name' => $value['name'],
+					'grade' => $value['grade'],
+					'secret' => $value['secret'] ?? false,
+				];
+			}
 		}
 	}
-	$listAchievement[] = $insertAchievement ?? [];
+
+	$listAchievement = $insertAchievement ?? [];
 
 	$twig->display('characters.html.twig', array(
 		'outfit' => $outfit ?? null,

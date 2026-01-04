@@ -81,8 +81,7 @@ $twig->display('server-info.html.twig', [
 function loadStagesData($configFile)
 {
 	if (!@file_exists($configFile)) {
-		log_append('error.log', "[loadStagesData] Fatal error: Cannot load stages.lua ($configFile).");
-		throw new RuntimeException("ERROR: Cannot find $configFile file.");
+		return [];
 	}
 
 	$result = [];
@@ -142,5 +141,6 @@ function loadStagesData($configFile)
 			}
 		}
 	}
+
 	return $result;
 }

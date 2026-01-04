@@ -395,7 +395,7 @@
                                     <td style="border:1px solid #808080;">{{ equipment[10]|raw }}</td>
                                   </tr>
                                   <tr>
-                                    <td style="color: #fff; text-align: center; font-size: 10px;">Cap: {{ cap }}</td>
+                                    <td style="color: #fff; text-align: center; font-size: 10px;">{{ cap > 0 ? 'Cap: ' ~ cap : '' }}</td>
                                   </tr>
                                 </table>
                               </td>
@@ -570,9 +570,9 @@
     </tbody>
   </table>
 </div>
+<br/>
 
-<br>
-
+{% if quests|length > 0 %}
 <div class="TableContainer">
   <div class="CaptionContainer">
     <div class="CaptionInnerContainer">
@@ -638,7 +638,10 @@
     </tbody>
   </table>
 </div>
-<br>
+<br/>
+{% endif %}
+
+{% if achievements|length > 0 %}
 <div class="TableContainer">
   <div class="CaptionContainer">
     <div class="CaptionInnerContainer">
@@ -688,7 +691,7 @@
                         <tr bgcolor="{{ getStyle(rows) }}">
                           <td style="width: 100px">
                             {% for i in 1..achievement.grade %}
-                              <img src="{{ BASE_URL }}images/global/general/achievement-grade-symbol.gif"
+                              <img src="{{ template_path }}/images/global/general/achievement-grade-symbol.gif"
                                    alt="Tibia Achievement">
                             {% endfor %}
                           </td>
@@ -696,7 +699,7 @@
                             {{ achievement.name }}
                             {% if achievement.secret == 1 %}
                               <img class="SecretAchievementIcon"
-                                   src="{{ BASE_URL }}images/global/general/achievement-secret-symbol.gif"
+                                   src="{{ template_path }}/images/global/general/achievement-secret-symbol.gif"
                                    alt="Tibia Secret Achievement">
                             {% endif %}
                           </td>
@@ -721,6 +724,7 @@
   </table>
 </div>
 <br>
+{% endif %}
 
 {{ hook(constant('HOOK_CHARACTERS_BEFORE_DEATHS')) }}
 
