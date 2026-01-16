@@ -1,3 +1,8 @@
+[v1.2.3 - 16.01.2026]
+	* Online page
+		* Use setting('core.online_datacenter') from myaac for display datacenter
+		* Fix current date
+
 [1.2.2 - 04.01.2026]
 	* Fix display of achievements in the characters page
 	* Fixes for servers that don't have:
