@@ -40,7 +40,7 @@
 										</tr>
 										<tr>
 											<td class="LabelV150">Location Datacenter:</td>
-											<td>Brasil<br><small>(Server Date: UTC - {{ current_date }})</small></td>
+											<td>{{ setting('core.online_datacenter')|raw }}<br/><small>(Server Date: UTC - {{ current_date }})</small></td>
 										</tr>
 									{% endif %}
 									</tbody>
