@@ -64,7 +64,7 @@
 							<td>
 								<select onchange="location = this.value;" id="vocationFilter">
 									<option value="{{ getLink('highscores') }}/{{ list|urlencode }}" class="size_xs">(all)</option>
-									{% for i in 0..config.vocations_amount %}
+									{% for i in baseVocations  %}
 										<option value="{{ getLink('highscores') }}/{{ list|urlencode }}/{{ config.vocations[i]|lower|urlencode }}" class="size_xs" {% if vocationId is not null and vocationId == i %}selected{% endif %}>{{ config.vocations[i]}}</option>
 									{% endfor %}
 								</select>

@@ -1,3 +1,7 @@
+[v2.0 - 16.01.2025]
+	* Fix online, characters & highscores for latest myaac v2.0-dev (Monk support)
+	* Remove routes hook, is useless in this myaac version
+
 [1.2.2 - 04.01.2026]
 	* Fix display of achievements in the characters page
 	* Fixes for servers that don't have:

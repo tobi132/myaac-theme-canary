@@ -1,22 +1,18 @@
 {
 	"name": "Theme Canary",
 	"description": "Template based on @opentibiabr MyAAC, similar to original Tibia website.",
-	"version": "1.2.2",
+	"version": "2.0",
 	"type": "template",
 	"license": "GPLv3",
 	"author": "opentibiabr, tobi132",
 	"contact": "tobi132@gmx.net",
 	"require": {
-		"myaac": "1.8"
+		"myaac": "2.0-dev"
 	},
 	"hooks": {
 		"canary-start": {
 			"type": "STARTUP",
 			"file": "plugins/theme-canary/init.php"
-		},
-		"canary-routes": {
-			"type": "FILTER_ROUTES",
-			"file": "plugins/theme-canary/hooks/routes.php"
 		}
 	},
 	"install": "plugins/theme-canary/install.php",

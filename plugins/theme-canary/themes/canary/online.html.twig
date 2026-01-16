@@ -105,64 +105,28 @@
 					<tbody><tr>
 						<td>
 							<div class="InnerTableContainer">
-								<table style="width:100%;"><tbody><tr>
-									<td>
-										<div class="TableContentContainer">
-											<table class="TableContent" width="100%">
-												<tbody>
-													<tr style="text-align: center">
-														<td class="LabelV150">Sorcerers</td>
-													</tr>
-													<tr style="text-align: center">
-														<td>{{ vocs[1] }}</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</td>
+								<table style="width:100%;">
+									<tbody>
+									<tr>
+										{% for vocationId in baseVocations %}
 										<td>
 											<div class="TableContentContainer">
 												<table class="TableContent" width="100%">
 													<tbody>
-													<tr style="text-align: center">
-														<td class="LabelV150">Druids</td>
-													</tr>
-													<tr style="text-align: center">
-														<td>{{ vocs[2] }}</td>
-													</tr>
+														<tr style="text-align: center">
+															<td class="LabelV150">{{ config('vocations')[vocationId] }}s</td>
+														</tr>
+														<tr style="text-align: center">
+															<td>{{ vocs[vocationId] }}</td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
 										</td>
-										<td>
-											<div class="TableContentContainer">
-												<table class="TableContent" width="100%">
-													<tbody>
-													<tr style="text-align: center">
-														<td class="LabelV150">Paladins</td>
-													</tr>
-													<tr style="text-align: center">
-														<td>{{ vocs[3] }}</td>
-													</tr>
-													</tbody>
-												</table>
-											</div>
-										</td>
-										<td>
-											<div class="TableContentContainer">
-												<table class="TableContent" width="100%">
-													<tbody>
-													<tr style="text-align: center">
-														<td class="LabelV150">Knights</td>
-													</tr>
-													<tr style="text-align: center">
-														<td>{{ vocs[4] }}</td>
-													</tr>
-													</tbody>
-												</table>
-											</div>
-										</td>
-								</tr></tbody></table>
+										{% endfor %}
+									</tr>
+									</tbody>
+								</table>
 							</div>
 						</td>
 					</tr></tbody>
@@ -221,7 +185,7 @@
 																<td width="4%">{{ player.country_image|raw }}</td>
 															{% endif %}
 															{% if config.online_outfit %}
-																<td width="10%"><img style="position:absolute;margin-top:{% if player.player.looktype in [75, 266, 302] %}-20px;margin-left:-0px;{% else %}-45px;margin-left:-25px;{%  endif %}" src="{{ player.outfit }}" alt="player outfit"/></td>
+																<td width="10%"><img style="position:absolute;margin-top:-45px;margin-left:-25px;" src="{{ player.outfit }}" alt="player outfit"/></td>
 															{% endif %}
 															<td width="50%">{{ player.name|raw }}{{ player.skull }}</td>
 															<td>{{ player.level }}</td>
