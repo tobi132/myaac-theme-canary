@@ -1,8 +1,8 @@
 {
 	"name": "Theme Canary",
-	"description": "Template based on @opentibiabr MyAAC, similar to original Tibia website.",
+	"description": "Theme based on @opentibiabr MyAAC, similar to original Tibia website.",
 	"version": "2.0",
-	"type": "template",
+	"type": "theme",
 	"license": "GPLv3",
 	"author": "opentibiabr, tobi132",
 	"contact": "tobi132@gmx.net",
