@@ -1,4 +1,7 @@
-[v1.2.3 - 16.01.2026]
+[1.2.4 - 06.05.2026]
+	* Add support for events.json (latest canary)
+
+[1.2.3 - 16.01.2026]
 	* Online page
 		* Use setting('core.online_datacenter') from myaac for display datacenter
 		* Fix current date
