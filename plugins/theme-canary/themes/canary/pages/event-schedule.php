@@ -129,10 +129,10 @@ function generateIndicator($event, $currentDay): string
 	}
 
 	$out = "<span style='width: 120px;' class='HelperDivIndicator'";
-	$div = "<div class='activated'>{$event['name']}:</div><div style='margin-bottom: 20px'>&amp;bull; {$event->description['description']}</div>";
+	$div = "<div class='activated'>{$event['name']}:</div><div style='margin-bottom: 20px'>&amp;bull; {$event['description']}</div>";
 	$out .= 'onmouseover="ActivateHelperDiv($(this), &quot;&quot;, &quot;' . $div . '&quot;, &quot;&quot;);"';
 	$out .= 'onmouseout="$(&quot;#HelperDivContainer&quot;).hide();">';
-	$out .= "<div class='event_name' style='background: {$event->colors['colordark']};'>{$isStartOrEnd}{$event['name']}</div></span>";
+	$out .= "<div class='event_name' style='background: {$event['colordark']};'>{$isStartOrEnd}{$event['name']}</div></span>";
 
 	return $out;
 }
@@ -147,11 +147,29 @@ function showCalendar($month, $year): string
 	$outDays = "<tr style='text-align:center; width:120px; background-color:#5f4d41;'>" . showWeeks() . "</tr>";
 
 	$events_xml = config('data_path') . 'XML/events.xml';
-	if (file_exists($events_xml)) {
+
+	$events_json = config('data_path') . 'json/eventscheduler/events.json';
+
+	if (file_exists($events_json)) {
+		$eventsDecode = json_decode(file_get_contents($events_json), true);
+		$events = $eventsDecode['events'];
+		foreach ($events as &$event) {
+			$event['colordark'] = $event['colors']['colordark'];
+		}
+
+		function compareEvent(array $first, array $second): int {
+			return ((int)$first['details']['displaypriority'] <=> (int)$second['details']['displaypriority']);
+		}
+
+		usort($events, 'compareEvent');
+	} elseif (file_exists($events_xml)) {
 		$xml = simplexml_load_file($events_xml);
 
 		$events = [];
 		foreach ($xml->event as $event) {
+			$event['description'] = $event->description['description'];
+			$event['colordark'] = $event->colors['colordark'];
+
 			$events[] = $event;
 		}
 
